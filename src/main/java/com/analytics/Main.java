@@ -18,15 +18,16 @@ public class Main {
         double avg = service.calculateAverage(students);
         System.out.println("Average Marks: " + avg);
 
-        // Ranking
+        // ✅ FIXED: rankStudents
         System.out.println("\nRanking:");
-        service.getRanking(students)
+        service.rankStudents(students)
                 .forEach(s -> System.out.println(s.getName() + " - " + s.getMarks()));
 
-        // Performance
+        // ✅ FIXED: getPerformanceTrend
         System.out.println("\nPerformance:");
-        service.getPerformance(students)
-                .forEach((name, performance) ->
-                        System.out.println(name + " - " + performance));
+        for (Student s : students) {
+            System.out.println(s.getName() + " - " +
+                    service.getPerformanceTrend(s.getMarks()));
+        }
     }
 }
