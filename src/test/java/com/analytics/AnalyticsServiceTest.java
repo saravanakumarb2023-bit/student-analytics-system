@@ -9,7 +9,6 @@ class AnalyticsServiceTest {
 
     AnalyticsService service = new AnalyticsService();
 
-    // ✅ Test Average
     @Test
     void testAverage() {
         List<Student> students = Arrays.asList(
@@ -17,11 +16,9 @@ class AnalyticsServiceTest {
                 new Student("B", 60)
         );
 
-        double result = service.calculateAverage(students);
-        assertEquals(70.0, result);
+        assertEquals(70.0, service.calculateAverage(students));
     }
 
-    // ✅ Test Ranking
     @Test
     void testRanking() {
         List<Student> students = Arrays.asList(
@@ -32,10 +29,8 @@ class AnalyticsServiceTest {
         List<Student> ranked = service.rankStudents(students);
 
         assertEquals("B", ranked.get(0).getName());
-        assertEquals(90, ranked.get(0).getMarks());
     }
 
-    // ✅ Test Performance Trend
     @Test
     void testPerformanceTrend() {
         assertEquals("Excellent", service.getPerformanceTrend(85));

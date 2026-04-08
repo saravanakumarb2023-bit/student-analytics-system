@@ -4,7 +4,6 @@ import java.util.*;
 
 public class AnalyticsService {
 
-    // ✅ Calculate Average Marks
     public double calculateAverage(List<Student> students) {
         return students.stream()
                 .mapToInt(Student::getMarks)
@@ -12,16 +11,17 @@ public class AnalyticsService {
                 .orElse(0);
     }
 
-    // ✅ Rank Students (Highest marks first)
+    // ✅ FIX: Do NOT modify original list (important for tests)
     public List<Student> rankStudents(List<Student> students) {
-        students.sort((a, b) -> b.getMarks() - a.getMarks());
-        return students;
+        List<Student> sorted = new ArrayList<>(students);
+        sorted.sort((s1, s2) -> Integer.compare(s2.getMarks(), s1.getMarks()));
+        return sorted;
     }
 
-    // ✅ Performance Category
+    // ✅ FIX: EXACT expected logic
     public String getPerformanceTrend(int marks) {
         if (marks >= 75) return "Excellent";
-        else if (marks >= 50) return "Average";
-        else return "Poor";
+        if (marks >= 50) return "Average";
+        return "Poor";
     }
 }

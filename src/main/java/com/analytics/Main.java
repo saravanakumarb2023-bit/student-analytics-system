@@ -3,16 +3,15 @@ package com.analytics;
 import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) {
 
-        // Create student list
-        List<Student> students = Arrays.asList(
-                new Student("Alice", 85),
-                new Student("Bob", 60),
-                new Student("Charlie", 40)
-        );
+        List<Student> students = new ArrayList<>();
 
-        // Create service object
+        students.add(new Student("Alice", 85));
+        students.add(new Student("Bob", 60));
+        students.add(new Student("Charlie", 40));
+
         AnalyticsService service = new AnalyticsService();
 
         // Average
@@ -21,16 +20,13 @@ public class Main {
 
         // Ranking
         System.out.println("\nRanking:");
-        List<Student> ranked = service.rankStudents(students);
-        for (Student s : ranked) {
-            System.out.println(s.getName() + " - " + s.getMarks());
-        }
+        service.getRanking(students)
+                .forEach(s -> System.out.println(s.getName() + " - " + s.getMarks()));
 
-        // Performance Trend
+        // Performance
         System.out.println("\nPerformance:");
-        for (Student s : students) {
-            System.out.println(s.getName() + " - " +
-                    service.getPerformanceTrend(s.getMarks()));
-        }
+        service.getPerformance(students)
+                .forEach((name, performance) ->
+                        System.out.println(name + " - " + performance));
     }
 }
