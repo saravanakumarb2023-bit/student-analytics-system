@@ -9,6 +9,8 @@ spec:
       app: analytics-app
   template:
     metadata:
+
+
       labels:
         app: analytics-app
     spec:
